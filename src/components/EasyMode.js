@@ -40,7 +40,7 @@ const EasyMode = () => {
     return Math.random() < 0.5 ? '+' : '-';
   };
 
-  const makeStringCalcul = (num1, num2, operator) => {
+  const makeCalcul = (num1, num2, operator) => {
     setCalcul(`${num1} ${operator} ${num2}`);
     setSolution(operator === '+' ? num1 + num2 : num1 - num2);
   };
@@ -80,7 +80,7 @@ const EasyMode = () => {
   const nextCalcul = () => {
     const [num1, num2] = generateNumber();
     const operator = determineTypeOfCalcul();
-    makeStringCalcul(num1, num2, operator);
+    makeCalcul(num1, num2, operator);
     setTimeLeft(10);
     setStartTime(Date.now());
   };
