@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet, Button, Keyboard } from 'react-native';
-import { KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
+import { KeyboardAvoidingView, keyboardShouldPersistTaps, ScrollView, Platform } from 'react-native';
 
 
 const EasyMode = () => {
@@ -119,7 +119,9 @@ const EasyMode = () => {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={{ flex: 1 }}
     >
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <ScrollView
+      keyboardShouldPersistTaps = {'always'} 
+      contentContainerStyle={{ flexGrow: 1 }}>
         <View style={styles.container}>
           <Text style={styles.scoreText}>Score: {score}</Text>
           <Text
