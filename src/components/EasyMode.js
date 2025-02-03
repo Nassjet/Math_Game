@@ -64,7 +64,7 @@ const EasyMode = () => {
 
   const handleAnswer = () => {
     Keyboard.dismiss();
-    
+
     compareSolutions();
     updateScore();
     nextCalcul();
@@ -97,17 +97,17 @@ const EasyMode = () => {
     // Masquer le clavier si actif
     Keyboard.dismiss();
 
-    setUserSolution(current => 
-      current.startsWith('-') 
+    setUserSolution(current =>
+      current.startsWith('-')
         ? current.slice(1)  // Retire le signe moins
         : `-${current}`     // Ajoute le signe moins
     );
-    
+
     // Forcer le focus sur l'input
     inputRef.current.focus();
   };
 
-  
+
 
   const timerStyle = {
     color: timeLeft <= 3 ? 'red' : 'black',
@@ -119,42 +119,38 @@ const EasyMode = () => {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={{ flex: 1 }}
     >
-      <ScrollView
-      keyboardShouldPersistTaps = {'always'} 
-      contentContainerStyle={{ flexGrow: 1 }}>
-        <View style={styles.container}>
-          <Text style={styles.scoreText}>Score: {score}</Text>
-          <Text
-            style={[
-              styles.timerText,
-              {
-                color: timeLeft <= 3 ? 'red' : 'black',
-                fontWeight: timeLeft <= 3 ? 'bold' : 'normal'
-              }
-            ]}
-            >
-            ⏳ Temps restant: {timeLeft}s
-          </Text>
-          <Text style={styles.problemText}>{calcul}</Text>
-          <View style={styles.inputContainer}>
-            <TouchableOpacity style={styles.buttonMinus} onPress={toggleMinusSign}>
-              <Text style={styles.buttonText}>-</Text>
-            </TouchableOpacity>
-            <TextInput
-              style={styles.input}
-              keyboardType="numeric"
-              value={userSolution}
-              onChangeText={setUserSolution}
-              returnKeyType="done"
-              onSubmitEditing={handleAnswer}
-            />
-          </View>
-          <TouchableOpacity style={styles.button} onPress={handleAnswer}>
-            <Text style={styles.buttonText}>Répondre</Text>
+      <View style={styles.container}>
+        <Text style={styles.scoreText}>Score: {score}</Text>
+        <Text
+          style={[
+            styles.timerText,
+            {
+              color: timeLeft <= 3 ? 'red' : 'black',
+              fontWeight: timeLeft <= 3 ? 'bold' : 'normal'
+            }
+          ]}
+        >
+          ⏳ Temps restant: {timeLeft}s
+        </Text>
+        <Text style={styles.problemText}>{calcul}</Text>
+        <View style={styles.inputContainer}>
+          <TouchableOpacity style={styles.buttonMinus} onPress={toggleMinusSign}>
+            <Text style={styles.buttonText}>-</Text>
           </TouchableOpacity>
-          {message && <Text style={styles.messageText}>{message}</Text>}
+          <TextInput
+            style={styles.input}
+            keyboardType="numeric"
+            value={userSolution}
+            onChangeText={setUserSolution}
+            returnKeyType="done"
+            onSubmitEditing={handleAnswer}
+          />
         </View>
-      </ScrollView>
+        <TouchableOpacity style={styles.button} onPress={handleAnswer}>
+          <Text style={styles.buttonText}>Répondre</Text>
+        </TouchableOpacity>
+        {message && <Text style={styles.messageText}>{message}</Text>}
+      </View>
     </KeyboardAvoidingView>
 
   );
